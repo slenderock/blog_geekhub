@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title Blog
+    = csrf_meta_tags
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    nav class="navbar navbar-default"
+      div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+        ul class="nav navbar-nav"
+          li = link_to 'Home', root_url
+        ul class="nav navbar-nav navbar-right"
+          - if user_signed_in?
+            li
+              br Signed in as #{current_user.email}
+
+            li  = link_to 'Log_out', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out"
+          - else
+            li = link_to ' Sign_up', new_user_registration_url, class: "glyphicon glyphicon-user"
+            li = link_to ' Login', new_user_session_url, class: "glyphicon glyphicon-log-in"
+
+    - if notice
+      = notice
+
+    - if alert
+      = alert
+
+    = yield

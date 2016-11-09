@@ -1,2 +1,12 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'db/schema.rb'
+
 Documentation:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 100
