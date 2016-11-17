@@ -5,6 +5,7 @@ table class="table table-bordered table-striped"
     tr
       th Title
       th Body
+      th Author
       th Show
       th Edit
       th Destroy
@@ -13,6 +14,7 @@ table class="table table-bordered table-striped"
         tr class="item"
           td = post.title
           td = post.body
+          td = User.find(post.user_id).email
           td = link_to 'Show', post, class: "btn btn-primary"
           td = link_to 'Edit', edit_post_path(post), class: "btn btn-warning"
           td = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
