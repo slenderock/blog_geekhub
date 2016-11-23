@@ -7,11 +7,19 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+    respond_to do |format|
+      format.html
+      format.json{ render json: @posts.to_json   }
+    end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json{ render json: @post.to_json   }
+    end
   end
 
   # GET /posts/new
@@ -21,6 +29,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if current_user != @post.id
+      flash[:notice] = "Sorry, you can't edit this tast"
+      redirect_to(posts_path)
+    end
   end
 
   # POST /posts
