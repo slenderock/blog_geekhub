@@ -14,10 +14,13 @@ gem 'pg'
 gem 'devise'
 gem 'slim-rails'
 gem 'bootstrap-sass'
+gem 'rmagick', '~> 2.15', '>= 2.15.4'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
+  gem 'awesome_print'
   gem 'rubocop'
   gem 'faker'
   gem 'reek'
@@ -27,7 +30,6 @@ end
 group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'listen', '~> 3.0.5'
-  gem 'awesome_print'
   gem 'web-console'
   gem 'annotate'
   gem 'spring'

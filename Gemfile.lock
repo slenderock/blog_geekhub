@@ -57,6 +57,10 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
+    carrierwave (1.0.0.rc)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     codeclimate-engine-rb (0.4.0)
       virtus (~> 1.0)
     coderay (1.1.1)
@@ -167,6 +171,7 @@ GEM
       rainbow (~> 2.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rmagick (2.16.0)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -254,6 +259,7 @@ DEPENDENCIES
   annotate
   awesome_print
   bootstrap-sass
+  carrierwave (>= 1.0.0.rc, < 2.0)
   coffee-rails (~> 4.2.1)
   devise
   factory_girl_rails
@@ -265,6 +271,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0.1)
   reek
+  rmagick (~> 2.15, >= 2.15.4)
   rspec-rails (~> 3.5)
   rubocop
   sass-rails (~> 5.0)

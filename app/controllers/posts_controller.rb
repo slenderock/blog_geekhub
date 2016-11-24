@@ -2,7 +2,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
-
+  before_action :permission_denied, only: [:edit, :destroy]
   # GET /posts
   # GET /posts.json
   def index
@@ -29,10 +29,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    if current_user != @post.id
-      flash[:notice] = "Sorry, you can't edit this tast"
-      redirect_to(posts_path)
-    end
   end
 
   # POST /posts
@@ -77,6 +73,12 @@ class PostsController < ApplicationController
 
   private
 
+  def permission_denied
+     if @post.user_id != current_user.id
+      flash[:notice] = "Sorry, you can't edit this tast"
+      redirect_to(posts_path)
+    end
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
@@ -84,6 +86,6 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :cover)
   end
 end
