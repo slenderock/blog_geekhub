@@ -30,6 +30,6 @@ html
       = alert
 
 
-    - cookies[:page_loads] = {:value => @loads}
-
-    = yield
+    - cookies[:page_loads] = {value: @loads}
+    div class="container"
+      = yield

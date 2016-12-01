@@ -1,4 +1,4 @@
-h1 align='center' Posts
+h1 align='center' Welcome. Again
 
 table class="table table-bordered table-striped"
   thead
@@ -10,13 +10,6 @@ table class="table table-bordered table-striped"
       th Edit
       th Destroy
   tbody
-    - @posts.each do |post|
-        tr class="item"
-          td = post.title
-          td = post.body
-          td = User.find(post.user_id).email
-          td = link_to 'Show', post, class: "btn btn-primary"
-          td = link_to 'Edit', edit_post_path(post), class: "btn btn-warning"
-          td = link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+    = render @posts
 
-= link_to 'New Post', new_post_path
+= link_to 'New Post', new_post_path, id: 'new_post_link', remote: true

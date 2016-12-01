@@ -7,10 +7,13 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    ActionController::Base.helpers.asset_path(
+      'fallback/' + [version_name, 'default.png'].compact.join('_')
+    )
   end
 
   version :thumb do
-    process :resize_to_limit => [350, 250]
+    process resize_to_limit: [1300, 500]
   end
 end
