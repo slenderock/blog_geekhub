@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 class CoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
+
   storage :file
 
   def store_dir
@@ -7,7 +9,6 @@ class CoverUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
     ActionController::Base.helpers.asset_path(
       'fallback/' + [version_name, 'default.png'].compact.join('_')
     )

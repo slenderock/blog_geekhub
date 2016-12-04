@@ -3,19 +3,20 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :permission_denied, only: [:edit, :destroy]
+  skip_before_action :verify_authenticity_token, only: :create
 
   def index
     @posts = Post.all
     respond_to do |format|
       format.html
-      format.json{ render json: @posts.to_json }
+      format.json { render json: @posts.to_json }
     end
   end
 
   def show
     respond_to do |format|
       format.html
-      format.json{ render json: @post.to_json }
+      format.json { render json: @post.to_json }
     end
   end
 
@@ -34,11 +35,13 @@ class PostsController < ApplicationController
     @post.user = current_user
     respond_to do |format|
       if @post.save
-        format.js
-        format.json { render :show, status: :created, location: @post }
+        format.js {}
+        format.json { render json: @post }
       else
-
-        format.html { redirect_to posts_url, notice: 'Please note that all fields that have an asterisk (*) are required in order to continue. ' }
+        format.html {
+          redirect_to posts_url,
+          notice: 'Please note that all fields that have an asterisk (*) are required in order to continue. '
+        }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -67,11 +70,9 @@ class PostsController < ApplicationController
   private
 
   def permission_denied
-     if @post.user != current_user
-      flash[:notice] = "Sorry, you can't edit this tast"
-      redirect_to(posts_path)
-    end
+    redirect_to posts_path, notice: "Sorry, you can't edit this tast" if @post.user != current_user
   end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])

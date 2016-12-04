@@ -1,5 +1,11 @@
+# frozen_string_literal: true
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:new, :show]
+  before_action :set_post, only: [:new, :create]
+  before_action :authenticate_user!
+
+  def index
+    @comments = Comment.all
+  end
 
   def new
     respond_to do |format|

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: comments
@@ -12,8 +13,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    commenter "MyString"
-    body "MyText"
+    commenter 'MyString'
+    body 'MyText'
     post nil
   end
 end

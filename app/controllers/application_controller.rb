@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
   end
 
   def learn_with_geekhub
-    if cookies[:pageLoads]
-      cookies[:pageLoads] = cookies[:pageLoads].to_i + 1
-    else
-      cookies[:pageLoads] = 0
-    end
+    cookies[:pageLoads] = if cookies[:pageLoads]
+                            cookies[:pageLoads].to_i + 1
+                          else
+                            0
+                          end
 
     if cookies[:pageLoads] == 10
-      flash.now[:notice] = "Учитесь вместе с GeekHub -______-"
+      flash.now[:notice] = 'Учитесь вместе с GeekHub -______- '
       cookies[:pageLoads] = 0
     end
   end

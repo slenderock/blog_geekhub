@@ -2,11 +2,10 @@ doctype html
 html
   head
     title Blog
-    = csrf_meta_tags
-
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
 
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
 
   body
     nav class="navbar navbar-default"
@@ -23,12 +22,14 @@ html
             li = link_to ' Sign_up', new_user_registration_url, class: "glyphicon glyphicon-user"
             li = link_to ' Login', new_user_session_url, class: "glyphicon glyphicon-log-in"
 
-    - if notice
-      = notice
 
     - if alert
-      = alert
+      div class="alert alert-danger"
+        = alert
 
+    - if notice
+      div class="alert alert-info"
+        = notice
 
     - cookies[:page_loads] = {value: @loads}
     div class="container"

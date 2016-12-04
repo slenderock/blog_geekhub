@@ -3,6 +3,12 @@ tr
     hr
     strong Commenter:
     = comment.commenter
+
     br
     strong Comment:
     = comment.body
+
+    br
+    h6 = l(comment.created_at, format: '%B, %d %Y %H:%M:%S')
+
+    / = link_to 'New comment', new_post_comment_path(@post), id: 'new_comment_link' , remote: true
