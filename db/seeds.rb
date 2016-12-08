@@ -6,10 +6,9 @@ ActiveRecord::Base.connection.tables.each do |table|
   ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
 end
 
-30.times do |i|
+50.times do |i|
   User.create(
     email: "user#{i}@ukr.net",
-    password: '111111',
-    password_confirmation: '111111'
+    password: '111111'
   )
 end

@@ -1,0 +1,1 @@
+$('#<%= @comment.id %>_comment_reputation').text('<%= pluralize @comment.reputation_for(:votes).to_i, "vote" %>');

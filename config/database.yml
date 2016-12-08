@@ -5,6 +5,7 @@ default: &default
   host: localhost
   username: pguser
   password: password
+
 development:
   <<: *default
   database: blog_development

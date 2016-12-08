@@ -10,5 +10,11 @@ tr
 
     br
     h6 = l(comment.created_at, format: '%B, %d %Y %H:%M:%S')
+    div id="#{comment.id}_comment_reputation"
+      = pluralize comment.reputation_for(:votes).to_i, 'vote'
 
-    / = link_to 'New comment', new_post_comment_path(@post), id: 'new_comment_link' , remote: true
+    = link_to 'up', vote_post_comment_path(@post, comment, type: 'up'), method: 'post', remote: true
+    |-|-
+    = link_to 'down', vote_post_comment_path(@post, comment, type: 'down'), method: 'post', remote: true
+    br
+    = link_to "Reply", new_post_comment_path(@post, parent_id: comment), remote: true

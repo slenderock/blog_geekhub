@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :posts do
-    resources :comments, only: [:index, :new, :create]
+    resources :comments, only: [:index, :new, :create] do
+      member { post :vote }
+    end
   end
 end

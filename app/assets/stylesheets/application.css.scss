@@ -17,6 +17,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.new_form{
-  margin-left: 50px;
+.nested_comment {
+  margin-left: 30px;
+}
+.nested_comment .nested_comment .nested_comment .nested_comment {
+  margin-left: 0;
 }

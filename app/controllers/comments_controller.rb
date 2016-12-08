@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @comment = @post.comments.new(parent_id: params[:parent_id])
     respond_to do |format|
       format.js
     end
@@ -15,6 +16,15 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def vote
+    value = params[:type] == 'up' ? 1 : -1
+    @comment = Comment.find(params[:id])
+    @comment.add_or_update_evaluation(:votes, value, current_user)
     respond_to do |format|
       format.js
     end

@@ -1,3 +1,3 @@
-$('table tbody').append("<%= j render partial: 'post', locals: {post: @post}%>");
+$('table tbody').append("<%= j render partial: @post %>");
 $('#new_post').remove();
 $('#new_post_link').show();

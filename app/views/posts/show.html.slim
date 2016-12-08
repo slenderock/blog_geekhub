@@ -13,6 +13,6 @@ table
     td
       h4 Comments
   tbody
-    = render @post.comments
+    = nested_comment @post.comments.arrange(order: :created_at)
 
 = link_to 'New comment', new_post_comment_path(@post), id: 'new_comment_link' , remote: true
